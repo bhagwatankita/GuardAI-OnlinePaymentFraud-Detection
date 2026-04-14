@@ -1,0 +1,45 @@
+# KNOWLEDGE BASE: GUARDAI FRAUD DETECTION SYSTEM
+# DOCUMENT VERSION: 1.1
+# PRIMARY DEVELOPER: ANKITA BHAGWAT
+
+## 1. PROJECT OVERVIEW
+GuardAI is a high-performance financial security application designed to detect fraudulent transactions in real-time. It utilizes a CatBoost machine learning model specifically tuned for highly imbalanced financial datasets.
+
+## 2. TECHNICAL SPECIFICATIONS
+- Model Architecture: CatBoost (Gradient Boosting on Decision Trees)
+- Accuracy Metric: 99.9% Recall & 1.00 Precision (State-of-the-Art performance)
+- Decision Threshold: 0.9526 (Optimized to eliminate false positives)
+- Core Logic: Feature Engineering focusing on balance discrepancies ("Balance Errors").
+
+## 3. DATA INPUT REQUIREMENTS (THE 6 PILLARS)
+To analyze a transaction, the agent/user must provide:
+1. Transaction Type: (PAYMENT, TRANSFER, CASH_OUT, DEBIT, or CASH_IN).
+2. Amount: The total currency value of the transaction.
+3. Old Balance Org: Sender's balance before the transaction.
+4. New Balance Orig: Sender's balance after the transaction.
+5. Old Balance Dest: Recipient's (Receiver) balance before the transaction.
+6. New Balance Dest: Recipient's (Receiver) balance after the transaction.
+
+## 4. INTERNAL LOGIC & FEATURE ENGINEERING
+The system creates two "Synthetic Features" internally that are the strongest predictors of fraud:
+- errorBalanceOrig: (newbalanceOrig + amount) - oldbalanceOrg
+- errorBalanceDest: (oldbalanceDest + amount) - newbalanceDest
+If these values are not zero, it indicates a mathematical mismatch in the transaction, which is a high-risk fraud indicator.
+
+## 5. USER FAQ FOR AGENT GUIDANCE
+Q: What is the 'Receiver'?
+A: The Receiver is the destination account getting the funds.
+
+Q: Why are so many balances needed?
+A: Fraudsters often try to hide money movement. Checking 'before' and 'after' balances on both sides reveals if money was "created" or "vanished" illegally.
+
+Q: What should I do if a 'Fraud Alert' appears?
+A: A Fraud Alert means the transaction matches a known scam pattern. The transaction should be flagged for manual review or immediate suspension.
+
+## 6. SYSTEM DEPLOYMENT
+- Backend: Python Flask
+- Frontend: Bootstrap 5 with Glassmorphism and Animate.css
+- Integration: The model is saved as 'perfect_fraud_model.cbm' and loaded via the CatBoost library.
+
+## 7. DEVELOPER INFORMATION
+Developed by Ankita Bhagwat, an AIML Engineer focused on scalable AI automation and agent orchestration.

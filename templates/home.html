@@ -1,0 +1,272 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuardAI | Financial Security</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        :root { --primary: #0f172a; --accent: #38bdf8; }
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: var(--primary); }
+        .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 100px 0; clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); }
+        .card { border: none; transition: transform 0.3s; border-radius: 15px; }
+        .card:hover { transform: translateY(-10px); }
+        .dev-footer { background: #e2e8f0; padding: 20px; border-radius: 10px; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent position-absolute w-100">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">🛡️ GuardAI</a>
+        <a href="/predict" class="btn btn-outline-info animate__animated animate__fadeIn">Try Predictor</a>
+    </div>
+</nav>
+
+<section class="hero text-center">
+    <div class="container animate__animated animate__fadeInUp">
+        <h1 class="display-3 fw-bold">Secure Every Transaction.</h1>
+        <p class="lead opacity-75">Real-time fraud detection powered by CatBoost & Advanced Feature Engineering.</p>
+        <div class="mt-4">
+            <a href="/predict" class="btn btn-info btn-lg px-5 py-3 fw-bold">Get Started</a>
+        </div>
+    </div>
+</section>
+
+<div class="container my-5">
+    <div class="row g-4 text-center">
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4">
+                <h3>99.9% Accuracy</h3>
+                <p>Optimized with custom thresholds to minimize false alarms.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4">
+                <h3>Use Case</h3>
+                <p>Designed for Digital Wallets, Neo-banks, and E-commerce gateways.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4">
+                <h3>Scalable AI</h3>
+                <p>Built on high-performance boosting algorithms for instant results.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="dev-footer text-center animate__animated animate__fadeIn">
+        <h5>Developed by <span class="text-primary fw-bold">Ankita Bhagwat</span></h5>
+        <p class="text-muted small">AIML Engineer | Focused on Scalable AI Systems</p>
+    </div>
+</div>
+
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuardAI | Financial Security</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        :root { --primary: #0f172a; --accent: #38bdf8; }
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: var(--primary); }
+        .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 100px 0; clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); }
+        .card { border: none; transition: transform 0.3s; border-radius: 15px; }
+        .card:hover { transform: translateY(-10px); }
+        .dev-footer { background: #e2e8f0; padding: 20px; border-radius: 10px; margin-top: 50px; }
+
+        /* --- CHAT ASSISTANT STYLES --- */
+        #chat-circle {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 60px; height: 60px;
+            background: var(--accent);
+            border-radius: 50%;
+            color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; cursor: pointer;
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
+            z-index: 1000; transition: transform 0.3s;
+        }
+        #chat-circle:hover { transform: scale(1.1); }
+
+        #chat-box {
+            position: fixed; bottom: 100px; right: 30px;
+            width: 350px; max-height: 500px;
+            background: white; border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            display: none; flex-direction: column;
+            overflow: hidden; z-index: 1001;
+        }
+
+        .chat-header {
+            background: var(--primary); color: white;
+            padding: 15px 20px; display: flex;
+            justify-content: space-between; align-items: center;
+        }
+
+        .chat-content {
+            height: 350px; padding: 20px;
+            overflow-y: auto; background: #f1f5f9;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+
+        .chat-input-area {
+            padding: 15px; border-top: 1px solid #e2e8f0;
+            display: flex; gap: 10px;
+        }
+
+        .chat-input-area input {
+            flex: 1; border: 1px solid #cbd5e1;
+            border-radius: 10px; padding: 8px 12px; outline: none;
+        }
+
+        .msg { padding: 8px 12px; border-radius: 12px; font-size: 14px; max-width: 80%; }
+        .msg.bot { background: white; color: var(--primary); align-self: flex-start; }
+        .msg.user { background: var(--accent); color: white; align-self: flex-end; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent position-absolute w-100">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">🛡️ GuardAI</a>
+        <a href="/predict" class="btn btn-outline-info animate__animated animate__fadeIn">Try Predictor</a>
+    </div>
+</nav>
+
+<section class="hero text-center">
+    <div class="container animate__animated animate__fadeInUp">
+        <h1 class="display-3 fw-bold">Secure Every Transaction.</h1>
+        <p class="lead opacity-75">Real-time fraud detection powered by CatBoost & Advanced Feature Engineering.</p>
+        <div class="mt-4">
+            <a href="/predict" class="btn btn-info btn-lg px-5 py-3 fw-bold">Get Started</a>
+        </div>
+    </div>
+</section>
+
+<div class="container my-5">
+    <div class="row g-4 text-center">
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4">
+                <h3>99.9% Accuracy</h3>
+                <p>Optimized with custom thresholds to minimize false alarms.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4">
+                <h3>Use Case</h3>
+                <p>Designed for Digital Wallets, Neo-banks, and E-commerce gateways.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4">
+                <h3>Scalable AI</h3>
+                <p>Built on high-performance boosting algorithms for instant results.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="dev-footer text-center animate__animated animate__fadeIn">
+        <h5>Developed by <span class="text-primary fw-bold">Ankita Bhagwat</span></h5>
+        <p class="text-muted small">AIML Engineer | Focused on Scalable AI Systems</p>
+    </div>
+</div>
+
+<div id="chat-circle" class="animate__animated animate__bounceInUp">
+    <span>💬</span>
+</div>
+
+<div id="chat-box" class="animate__animated">
+    <div class="chat-header">
+        <span class="fw-bold">GuardAI Assistant</span>
+        <button type="button" class="btn-close btn-close-white" id="chat-close" style="font-size: 12px;"></button>
+    </div>
+    <div class="chat-content" id="chat-display">
+        <div class="msg bot">Hello! I'm your GuardAI assistant. How can I help you with transaction security today?</div>
+    </div>
+    <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Type a message...">
+        <button class="btn btn-info btn-sm" id="chat-send">Send</button>
+    </div>
+</div>
+
+<script>
+    const chatCircle = document.getElementById('chat-circle');
+    const chatBox = document.getElementById('chat-box');
+    const chatClose = document.getElementById('chat-close');
+    const chatInput = document.getElementById('chat-input');
+    const chatSend = document.getElementById('chat-send');
+    const chatDisplay = document.getElementById('chat-display');
+
+    // Toggle Chat Window
+    chatCircle.onclick = () => {
+        chatBox.style.display = 'flex';
+        chatBox.classList.remove('animate__fadeOutDown');
+        chatBox.classList.add('animate__fadeInUp');
+    };
+
+    chatClose.onclick = () => {
+        chatBox.classList.remove('animate__fadeInUp');
+        chatBox.classList.add('animate__fadeOutDown');
+        setTimeout(() => { chatBox.style.display = 'none'; }, 500);
+    };
+
+    function addMessage(text, sender) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `msg ${sender} animate__animated animate__fadeInUp`;
+        msgDiv.innerHTML = text; // Using innerHTML to support markdown formatting from Agent
+        chatDisplay.appendChild(msgDiv);
+        chatDisplay.scrollTop = chatDisplay.scrollHeight;
+        return msgDiv;
+    }
+
+    async function sendMessage() {
+        const message = chatInput.value.trim();
+        if (message === "") return;
+
+        // 1. Add User Message
+        addMessage(message, 'user');
+        chatInput.value = "";
+
+        // 2. Show Typing Indicator
+        const typingIndicator = addMessage("<i>GuardAI is thinking...</i>", 'bot');
+
+        try {
+            // 3. Send to Flask Backend
+            const response = await fetch('/ask_chatbot', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message })
+            });
+
+            const data = await response.json();
+
+            // 4. Update with actual response
+            typingIndicator.remove(); // Remove the "thinking" text
+            if (data.status === "success") {
+                addMessage(data.response, 'bot');
+            } else {
+                addMessage("I'm sorry, I encountered an error processing your request.", 'bot');
+            }
+        } catch (error) {
+            typingIndicator.remove();
+            console.error('Error:', error);
+            addMessage("Connection failed. Please ensure the backend is running.", 'bot');
+        }
+    }
+
+    // Event Listeners
+    chatSend.onclick = sendMessage;
+    chatInput.onkeypress = (e) => { if (e.key === 'Enter') sendMessage(); };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+echo venv/ > .gitignore
+echo dataset.csv >> .gitignore
+echo *.cbm >> .gitignore
+echo __pycache__/ >> .gitignore
